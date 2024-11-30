@@ -1,0 +1,31 @@
+<section class="bg-black">
+    <div class="text-center">
+        <div>
+            <h4 class="a-h4">{{ section.settings.description }}</h4>
+            <h2 class="a-h2">{{ section.settings.titre }}</h2>
+        </div>
+        <a href="{{ section.settings.lien }}" class="">
+            Découvrir
+        </a>
+    </div>
+</section>
+{% schema %}
+    {
+      "name": "a-first-section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "titre",
+          "label": "Titre"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ],
+    }
+    {% endschema %}
+    
+
+    

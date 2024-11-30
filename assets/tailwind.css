@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .a-h2 {
+      @apply text-5xl text-white uppercase;
+    }
+    .a-h4 {
+        @apply text-3xl text-white;
+    }
+  }
