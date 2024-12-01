@@ -1,10 +1,58 @@
-<section class="text-center">
-  <div>
-    <div class="space-y-2 md:space-y-4">
+<section class="">
+    <div class="space-y-2 md:space-y-4 text-center">
       <h4 class="a-h4 text-black">{{ section.settings.description }}</h4>
       <h2 class="a-h2 text-black">{{ section.settings.titre }}</h2>
     </div>
-  </div>
+
+    <div class="flex justify-center space-x-[5vw]">
+      <div class="flex flex-col justify-end">
+        <div class="text-center text-black border border-black flex flex-col items-center px-4 py-8 md:py-16 m-8 space-y-24 space-y-32 w-[250px] h-[300px]">
+          {% assign my_collection = collections['accessoires'] %}
+          <img class="w-64 md:w-48" src="{{ my_collection.featured_image | img_url: 'medium' }}" width="" height="" alt="{{ my_collection.title }}">
+          <a class="a-btn1 border-transparent" href="{{ my_collection.url }}">
+            {{ my_collection.title }}
+          </a>
+        </div>              
+        <div class="text-center text-black border border-black flex flex-col items-center px-4 py-8 md:py-16 m-8 space-y-24 space-y-32 w-[250px] h-[300px]">
+          {% assign my_collection = collections['ceintures-bretelles'] %}
+          <img class="w-64 md:w-48" src="{{ my_collection.featured_image | img_url: 'medium' }}" width="" height="" alt="{{ my_collection.title }}">
+          <a class="a-btn1 border-transparent" href="{{ my_collection.url }}">
+            {{ my_collection.title }}
+          </a>
+        </div>        
+        <div class="text-center text-black border border-black flex flex-col items-center px-4 py-8 md:py-16 m-8 space-y-24 md:space-y-32 w-[200px] md:w-[250px] h-[300px]">
+          {% assign my_collection = collections['chaussures-cie'] %}
+          <img class="w-64 md:w-48" src="{{ my_collection.featured_image | img_url: 'medium' }}" width="" height="" alt="{{ my_collection.title }}">
+          <a class="a-btn1 border-transparent" href="{{ my_collection.url }}">
+            {{ my_collection.title }} 
+          </a>
+        </div>    
+      </div>
+      <div>
+        <div class="text-center text-black border border-black flex flex-col items-center px-4 py-8 md:py-16 m-8 space-y-8 md:space-y-16 ">
+          {% assign my_collection = collections['pret-a-porter'] %}
+          <img class="w-64 md:w-48" src="{{ my_collection.featured_image | img_url: 'medium' }}" width="" height="" alt="{{ my_collection.title }}">
+          <a class="a-btn1 border-black" href="{{ my_collection.url }}">
+            {{ my_collection.title }}
+          </a>
+        </div>              
+        <div class="text-center text-black border border-black flex flex-col items-center px-4 py-8 md:py-16 m-8 space-y-8 md:space-y-16 ">
+          {% assign my_collection = collections['maroquinerie'] %}
+          <img class="w-64 md:w-48" src="{{ my_collection.featured_image | img_url: 'medium' }}" width="" height="" alt="{{ my_collection.title }}">
+          <a class="a-btn1 border-black" href="{{ my_collection.url }}">
+            {{ my_collection.title }}
+          </a>
+        </div>        
+        <div class="text-center text-black border border-black flex flex-col items-center px-4 py-8 md:py-16 m-8 space-y-8 md:space-y-16 ">
+          {% assign my_collection = collections['revenge-pour-elle'] %}
+          <img class="w-64 md:w-48" src="{{ my_collection.featured_image | img_url: 'medium' }}" width="" height="" alt="{{ my_collection.title }}">
+          <a class="a-btn1 border-black" href="{{ my_collection.url }}">
+            {{ my_collection.title }}
+          </a>
+        </div>    
+      </div>
+    </div>
+
 </section>
 
 {% schema %}
