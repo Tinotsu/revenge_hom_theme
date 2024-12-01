@@ -1,0 +1,26 @@
+<section class="text-center">
+  <div>
+    <div class="space-y-2 md:space-y-4">
+      <h4 class="a-h4 text-black">{{ section.settings.description }}</h4>
+      <h2 class="a-h2 text-black">{{ section.settings.titre }}</h2>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+    {
+      "name": "a-all-categories",
+      "settings": [
+        {
+          "type": "text",
+          "id": "titre",
+          "label": "Titre"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+    {% endschema %}

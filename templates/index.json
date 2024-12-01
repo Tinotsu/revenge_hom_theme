@@ -17,49 +17,16 @@
         "image" : "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/pyjama_zimmerli.png?v=1733059155"
       }
     },
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+    "a-all-categories" : {
+      "type": "a-all-categories",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "titre" : "Découvrez notre sélection",
+        "description" : "Mode sans Compromis",
       }
-    },
-    
+    }
   },
   "order": [
     "a-first-section",
-    "image_banner",
+    "a-all-categories",
   ]
 }

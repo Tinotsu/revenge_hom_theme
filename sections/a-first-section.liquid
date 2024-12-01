@@ -1,11 +1,13 @@
-<section class="bg-cover bg-center lg:bg-top text-white text-center md:text-left h-[60vh] md:h-[75vh] flex flex-col justify-end p-10 md:p-[30px] space-y-6 md:space-y-12" style="background-image: url('{{ section.settings.image}}');">
+<section class="bg-cover bg-center lg:bg-top text-white text-center md:text-left h-[60vh] md:h-[75vh] flex flex-col justify-end p-10 md:p-[30px] lg:p-[60px] space-y-6 md:space-y-12" style="background-image: url('{{ section.settings.image}}');">
         <div class="space-y-2 md:space-y-4">
             <h4 class="a-h4 text-white">{{ section.settings.description }}</h4>
             <h2 class="a-h2 text-white">{{ section.settings.titre }}</h2>
         </div>
-        <a href="{{ section.settings.lien }}" class="a-btn1">
+        <div>
+          <a href="{{ section.settings.lien }}" class="a-btn1">
             Découvrir
         </a>
+        </div>
 </section>
 {% schema %}
     {

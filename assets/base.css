@@ -258,7 +258,7 @@ h5,
 .h3,
 .h4,
 .h5 {
-  font-family: var(--font-heading-family);
+  font-family: var(--font-body-family);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
   letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
@@ -3594,4 +3594,34 @@ details-disclosure > details {
   100% {
     transform: translateX(100%) scaleX(0);
   }
+}
+
+@font-face {
+  font-family: "ZenKakuGothicNew-Black";
+  src: url(ZenKakuGothicNew-Black.woff2) format(woff2),
+  url(ZenKakuGothicNew-Black.woff) format(woff);
+}
+@font-face {
+  font-family: "ZenKakuGothicNew-Bold";
+  src: url(ZenKakuGothicNew-Bold.woff2) format(woff2),
+  url(ZenKakuGothicNew-Bold.woff) format(woff);
+}
+@font-face {
+  font-family: "ZenKakuGothicNew-Light";
+  src: url(ZenKakuGothicNew-Light.woff2) format(woff2),
+  url(ZenKakuGothicNew-Light.woff) format(woff);
+}
+@font-face {
+  font-family: "ZenKakuGothicNew-Medium";
+  src: url(ZenKakuGothicNew-Medium.woff2) format(woff2),
+  url(ZenKakuGothicNew-Medium.woff) format(woff);
+}
+@font-face {
+  font-family: "ZenKakuGothicNew-Regular";
+  src: url(ZenKakuGothicNew-Regular.woff2) format(woff2),
+  url(ZenKakuGothicNew-Regular.woff) format(woff);
+}
+
+body {
+  font-family: "ZenKakuGothicNew-Regular";
 }

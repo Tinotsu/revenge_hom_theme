@@ -1,5 +1,16 @@
 [
   {
+    "name": "Typographie",
+    "settings": [
+      {
+        "type":"font_picker",
+        "id":"body_font",
+        "label": "Body font",
+        "default": "ZenKakuGothicNew-Regular"
+      }
+    ]
+  },
+  {
     "name": "theme_info",
     "theme_name": "Dawn",
     "theme_version": "15.2.0",
