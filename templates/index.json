@@ -13,7 +13,8 @@
       "type": "a-first-section",
       "settings" : {
         "titre" : "Pyjama Zimmerli",
-        "description" : "Nouveautés"
+        "description" : "Nouveautés",
+        "image" : "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/pyjama_zimmerli.png?v=1733059155"
       }
     },
     "image_banner": {

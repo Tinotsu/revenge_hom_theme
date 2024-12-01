@@ -1,13 +1,11 @@
-<section class="bg-black">
-    <div class="text-center">
-        <div>
-            <h4 class="a-h4">{{ section.settings.description }}</h4>
-            <h2 class="a-h2">{{ section.settings.titre }}</h2>
+<section class="bg-cover bg-center lg:bg-top text-white text-center md:text-left h-[60vh] md:h-[75vh] flex flex-col justify-end p-10 md:p-[30px] space-y-6 md:space-y-12" style="background-image: url('{{ section.settings.image}}');">
+        <div class="space-y-2 md:space-y-4">
+            <h4 class="a-h4 text-white">{{ section.settings.description }}</h4>
+            <h2 class="a-h2 text-white">{{ section.settings.titre }}</h2>
         </div>
-        <a href="{{ section.settings.lien }}" class="">
+        <a href="{{ section.settings.lien }}" class="a-btn1">
             Découvrir
         </a>
-    </div>
 </section>
 {% schema %}
     {
@@ -22,8 +20,13 @@
           "type": "text",
           "id": "description",
           "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "image",
+          "label": "URL Image"
         }
-      ],
+      ]
     }
     {% endschema %}
     

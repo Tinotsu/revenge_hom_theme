@@ -4,9 +4,12 @@
 
 @layer components {
     .a-h2 {
-      @apply text-5xl text-white uppercase;
+      @apply text-5xl md:text-[6rem] uppercase;
     }
     .a-h4 {
-        @apply text-3xl text-white;
+        @apply text-3xl md:text-[3rem];
+    }
+    .a-btn1 {
+      @apply text-2xl md:text-[2.5rem] uppercase underline;
     }
   }
