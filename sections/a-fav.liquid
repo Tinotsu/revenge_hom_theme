@@ -1,18 +1,10 @@
-{% assign wishlist = customer.metafields.wishlist.products %}
+a-fav
 
 <div>
-  {% if wishlist.size > 0 %}
-    {% for product in wishlist %}
-      <div>
-        <a href="{{ product.url }}">
-          <img src="{{ product.featured_image | img_url: 'small' }}" alt="{{ product.title }}" width="" height="">
-          <p>{{ product.title }}</p>
-        </a>
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>Vos favoris sont vides.</p>
-  {% endif %}
+  <h2>Vos Favoris</h2>
+  <div id="wishlist-container" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <!-- Les produits favoris seront affichés ici -->
+  </div>
 </div>
 
 
