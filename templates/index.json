@@ -32,11 +32,20 @@
         "bouton" : "prendre rendez-vous",
         "image" : "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/image_2024-12-02_115114022.png?v=1733136681"
       }
+    },
+    "a-featured-product" : {
+      "type": "a-featured-product"
+    },
+    "a-fav" : {
+      "type": "a-fav"
     }
+    
   },
   "order": [
     "a-first-section",
     "a-all-categories",
     "a-reservation-index",
+    "a-featured-product",
+    "a-fav"
   ]
 }

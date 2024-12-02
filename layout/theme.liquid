@@ -298,7 +298,6 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -375,5 +374,8 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
+
   </body>
 </html>

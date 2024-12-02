@@ -1,0 +1,26 @@
+<section class="py-8 px-6">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-6">Produits Populaires</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {% for product in collections['accessoires'].products limit: 8 %}
+        <div class="border p-4 rounded-lg text-center">
+          <a href="{{ product.url }}" class="block mb-4">
+            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" class="w-full h-auto rounded-md">
+          </a>
+          <h3 class="text-lg font-semibold mb-2">{{ product.title }}</h3>
+          <p class="text-sm text-gray-500 mb-4">{{ product.price | money }}</p>
+          <button class="wishlist-btn bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" data-product-id="{{ product.id }}">
+            Ajouter aux favoris
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+    {
+      "name": "a-featured-product"
+    }
+{% endschema %}
