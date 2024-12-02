@@ -34,12 +34,24 @@
       }
     },
     "a-featured-product" : {
-      "type": "a-featured-product"
+      "type": "a-featured-product",
+      "settings": {
+        "titre" : "les plus populaires",
+        "description" : "Ce qui vous a le plus parlé",
+        "image" : "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/image_2024-12-02_204203966.png?v=1733168532",
+        "product_1": "boots-a-lacets-hannibal",
+        "product_2": "boots-a-lacets-hannibal",
+        "product_3": "boots-a-lacets-hannibal",
+        "product_4": "boots-a-lacets-hannibal",
+        "product_5": "boots-a-lacets-hannibal",
+        "product_6": "boots-a-lacets-hannibal",
+        "product_7": "boots-a-lacets-hannibal",
+        "product_8": "boots-a-lacets-hannibal"
+      }
     },
     "a-fav" : {
       "type": "a-fav"
     }
-    
   },
   "order": [
     "a-first-section",

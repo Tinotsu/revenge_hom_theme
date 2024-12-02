@@ -13,7 +13,8 @@ module.exports = {
       colors: {
         revenge1: '#F68532',
         revenge2: '#4B3E37',
-        revenge3: '#BFAB99'
+        revenge3: '#BFAB99',
+        revenge4: '#DFD5CC',
       }
     },
   },

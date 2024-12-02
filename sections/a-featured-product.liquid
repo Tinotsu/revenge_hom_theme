@@ -1,38 +1,99 @@
-<section class="py-8 px-6">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="text-3xl font-bold text-center mb-6">Produits Populaires</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {% for product in collections['accessoires'].products limit: 8 %}
-
-
-        {% if customer %}
-          <button 
-          class="wishlist-btn" 
-          data-product-id="{{ product.id }}"
-        >
-          Ajouter aux favoris
-        </button>
-        {% else %}
-          <a href="/account/login" class="add-to-favorites">
-            Connectez-vous pour ajouter aux favoris
-          </a>
+<section class="bg-revenge3">
+  <img src="{{ section.settings.image}}" class="w-[100vw] md:h-[300px] md:object-top object-cover" width="" height="">
+  <div>
+    <div class="md:px-[30px] py-[24px] md:py-[72px]">
+      <div class="space-y-2 md:space-y-12 text-center">
+        <h4 class="a-h4 text-revenge2">{{ section.settings.description }}</h4>
+        <h2 class="a-h2 text-revenge2">{{ section.settings.titre }}</h2>
+      </div>
+    </div>
+    <div class="flex flex-wrap bg-revenge4">
+      {% for i in (1..8) %}
+        {% assign key = "product_" | append: i %}
+        {% assign product_handle = section.settings[key] %}
+        {% if product_handle != blank %}
+          {% assign product = all_products[product_handle] %}
+          <div class="featured-product  bg-revenge4 group border border-revenge2 flex flex-col items-center text-center h-[300px] sm:h-[400px] md:h-[25vw] w-1/2 md:w-1/4 transform hover:md:h-[30vw] hover:shadow-lg origin-top">
+            <div class="w-full text-right">
+              <button class="wishlist-btn" data-product-id="{{ product.id }}">
+                Ajouter aux favoris
+              </button>
+            </div>
+            <a href="{{ product.url }}"> 
+              <div class="relative flex flex-col items-center justify-center flex-grow">
+                <img src="{{ product.featured_image | img_url: 'medium' }}" class="h-[170px] w-[170px] md:h-[15vw] md:w-[15vw] object-cover" alt="{{ product.title }}">
+                
+                <!-- Conteneur pour le titre et le prix -->
+                <div class=" md:opacity-0 group-hover:opacity-100 p-2">
+                  <h3>{{ product.title }}</h3>
+                  <p>{{ product.price | money }}</p>
+                </div>
+              </div>
+            </a>
+          </div>        
         {% endif %}
-        
-
-        <div class="border p-4 rounded-lg text-center">
-          <a href="{{ product.url }}" class="block mb-4">
-            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" class="w-full h-auto rounded-md">
-          </a>
-          <h3 class="text-lg font-semibold mb-2">{{ product.title }}</h3>
-          <p class="text-sm text-gray-500 mb-4">{{ product.price | money }}</p>
-        </div>
       {% endfor %}
     </div>
   </div>
-</section>
-
 {% schema %}
     {
-      "name": "a-featured-product"
+      "name": "a-featured-product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "image",
+          "label": "URL Image"
+        },
+        {
+          "type": "text",
+          "id": "titre",
+          "label": "Titre"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Produit 1"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Produit 2"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Produit 3"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "Produit 4"
+        },
+        {
+          "type": "product",
+          "id": "product_5",
+          "label": "Produit 5"
+        },
+        {
+          "type": "product",
+          "id": "product_6",
+          "label": "Produit 6"
+        },
+        {
+          "type": "product",
+          "id": "product_7",
+          "label": "Produit 7"
+        },
+        {
+          "type": "product",
+          "id": "product_8",
+          "label": "Produit 8"
+        }
+  ]
     }
 {% endschema %}
