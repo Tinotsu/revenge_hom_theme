@@ -23,10 +23,20 @@
         "titre" : "Découvrez notre sélection",
         "description" : "Mode sans Compromis",
       }
+    },
+    "a-reservation-index" : {
+      "type": "a-reservation-index",
+      "settings": {
+        "titre" : "soyez conseillé",
+        "description" : "Prenons un moment au calme pour trouver le style qui vous ressemble",
+        "bouton" : "prendre rendez-vous",
+        "image" : "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/image_2024-12-02_115114022.png?v=1733136681"
+      }
     }
   },
   "order": [
     "a-first-section",
     "a-all-categories",
+    "a-reservation-index",
   ]
 }
