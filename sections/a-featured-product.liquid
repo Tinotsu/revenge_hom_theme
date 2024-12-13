@@ -13,24 +13,7 @@
         {% assign product_handle = section.settings[key] %}
         {% if product_handle != blank %}
           {% assign product = all_products[product_handle] %}
-          <div class="featured-product  bg-revenge4 group border border-revenge2 flex flex-col items-center text-center h-[300px] sm:h-[400px] md:h-[25vw] w-1/2 md:w-1/4 transform hover:md:h-[30vw] hover:shadow-lg origin-top">
-            <div class="w-full text-right">
-              <button class="wishlist-btn" data-product-id="{{ product.id }}">
-                Ajouter aux favoris
-              </button>
-            </div>
-            <a href="{{ product.url }}"> 
-              <div class="relative flex flex-col items-center justify-center flex-grow">
-                <img src="{{ product.featured_image | img_url: 'medium' }}" class="h-[170px] w-[170px] md:h-[15vw] md:w-[15vw] object-cover" alt="{{ product.title }}">
-                
-                <!-- Conteneur pour le titre et le prix -->
-                <div class=" md:opacity-0 group-hover:opacity-100 p-2">
-                  <h3>{{ product.title }}</h3>
-                  <p>{{ product.price | money }}</p>
-                </div>
-              </div>
-            </a>
-          </div>        
+          {% render 'a-card-product' %}  
         {% endif %}
       {% endfor %}
     </div>

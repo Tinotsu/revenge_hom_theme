@@ -51,7 +51,7 @@
     },
     "a-fav" : {
       "type": "a-fav"
-    }
+    },
   },
   "order": [
     "a-first-section",
