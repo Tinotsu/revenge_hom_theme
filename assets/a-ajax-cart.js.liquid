@@ -1,0 +1,25 @@
+document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        // Submit form with ajax
+        await fetch("/cart/add", {
+            method :"post"
+            body: new formData,
+        });
+
+        //Open cart-drawer
+        document.querySelector(".cart-drawer").classList.add("cart-drawer--active")
+    });
+});
+
+document.querySelectorAll('.cart-drawer-header-right-close, .cart-drawer')
+.forEach((el) => {
+    el.addEventListener('click', ()=> {
+        document
+            .querySelector(".cart-drawer")
+            .classList.remove("cart-drawer--active");
+    });
+});

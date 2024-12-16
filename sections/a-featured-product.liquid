@@ -13,7 +13,7 @@
         {% assign product_handle = section.settings[key] %}
         {% if product_handle != blank %}
           {% assign product = all_products[product_handle] %}
-          {% render 'a-card-product' %}  
+          {% render 'a-card-product' product: product %}  
         {% endif %}
       {% endfor %}
     </div>
