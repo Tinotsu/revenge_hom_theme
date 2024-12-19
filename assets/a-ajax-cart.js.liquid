@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="flex">
               <div class="flex flex-col">
                 <a href="${item.url}" class="inline">${item.product_title}</a>
-                <p>${item.properties?.['shoe-size'] || ''}</p>
+                <p>${item.selected_or_first_available_variant}</p>
               </div>
               <button class="remove-btn bg-red-500 text-white px-4 py-2 rounded" data-line="${index + 1}">Remove</button>
             </div>
@@ -106,6 +106,25 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error updating cart item:", error);
     }
   }
+
+
+  const cartDrawerSection = document.getElementById("cart-drawer-section");
+  const closeButton = document.getElementById("close-cart-drawer");
+  /*
+  const openCartButton = document.getElementById("open-cart-drawer");
+
+  // Open the cart drawer
+  openCartButton.addEventListener("click", () => {
+    cartDrawerSection.classList.remove("translate-x-full");
+    cartDrawerSection.classList.add("translate-x-0");
+  });
+*/
+  // Close the cart drawer
+  closeButton.addEventListener("click", () => {
+    cartDrawerSection.classList.remove("translate-x-0");
+    cartDrawerSection.classList.add("hidden");
+  });
+
 
   // Call updateCartDrawer on page load to fetch the current cart state
   updateCartDrawer();
