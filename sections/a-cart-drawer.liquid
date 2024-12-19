@@ -1,38 +1,21 @@
-<section class="absolute border border-red-500">
-
-<h2>Ton super panier ! ({{ cart.item_count }})</h2>
-
-{% if cart.empty? %}
-
-    <p>Ton panier est vide...</p>
-
-{% else %}
-  {% form 'cart', cart %}
-    {% for item in cart.items %}
-      <div class="border border-black flex">
-        <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title }}" width="" height="">
-        <div class="flex flex-col">
-          <h3>{{ item.product.title }}</h3>
-          <!-- <p>{{ item.variant.title }}</p> -->
-          <a href="{{ item.url_to_remove }}">enlever</a>
-          <p>{% render 'price', product: item.product, price_class: '', show_compare_at_price: true %}</p>
-          <p>{{ item.final_line_price | money }}</p>
-          <span>Quantité : <input name="quantity" value="{{ item.quantity }}"></span>
-        </div>
+<section class="z-20 bg-revenge2 fixed top-0 h-full w-full md:w-[450px] right-0">
+  <div id="cart-drawer" class="flex flex-col h-full">
+    <div class="flex justify-between">
+      <h2>Votre panier</h2>
+      <p><span id="cart_item_count"> Article<span id="article_s"></span></span></p>
+    </div>
+    <div id="cart_items_container" class="overflow-y-auto w-[100%] flex-grow p-4">
+      {% for item in cart.items %}
+          <div id="cart_item_title_{{ forloop.index }}"></div>
+      {% endfor %}
+    </div>
+    <div class="flex flex-col bg-revenge3">
+      <div class="w-full flex justify-between">
+        <p>Total :</p>
+        <p id="cart_item_total"></p>
       </div>
-    {% endfor %}
-
-    <p>Réduction : {{ cart.total_discount }}</p>
-    <p>Total : {{ cart.total_price | money }}</p>
-    <button type="submit" name="checkout">checkout</button>
-  {% endform %}
-{% endif %}
-
+      <a href="" class="w-full bg-revenge2 text-white">règlement</a>
+      <a href="" class="w-full bg-revenge4">voir panier</a>
+    </div>
+  </div>
 </section>
-
-{% schema %}
-{
-  "name": "Cart drawer",
-  "settings": []
-}
-{% endschema %}

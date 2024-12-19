@@ -1,25 +1,132 @@
-document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
+document.addEventListener("DOMContentLoaded", () => {
+  // Function to update the cart drawer
+  async function updateCartDrawer() {
+    try {
+      const response = await fetch("/cart.js");
+      const cart = await response.json();
+
+      // Update cart item count
+      document.getElementById("cart_item_count").textContent = cart.item_count;
+
+      const cartDrawer = document.getElementById("cart_items_container");
+      let itemContainer = document.getElementById("cart_item_container");
+
+      if (!itemContainer) {
+        itemContainer = document.createElement("div");
+        itemContainer.id = "cart_item_container";
+        cartDrawer.appendChild(itemContainer);
+      }
+
+      itemContainer.innerHTML = "";
+
+      // Populate the container with cart items
+      cart.items.forEach((item, index) => {
+        const itemElement = document.createElement("div");
+        itemElement.classList.add("z-30", "bg-revenge1", "w-[100%]", "h-auto", "flex", "items-center", "space-x-16");
+        const priceInEuro = (item.price / 100).toFixed(2);
+        itemElement.innerHTML = `
+          <img src="${item.featured_image.url}" alt="${item.product_title}" class="w-[100px]">
+          <div class="flex flex-col w-[100%]">
+            <div class="flex">
+              <div class="flex flex-col">
+                <a href="${item.url}" class="inline">${item.product_title}</a>
+                <p>${item.properties?.['shoe-size'] || ''}</p>
+              </div>
+              <button class="remove-btn bg-red-500 text-white px-4 py-2 rounded" data-line="${index + 1}">Remove</button>
+            </div>
+            <div class="flex">
+              <div class="flex items-center space-x-2 mt-2">
+                <button class="minus-btn bg-gray-300 px-2 py-1 rounded" data-line="${index + 1}">-</button>
+                <span class="quantity_item text-lg w-2">${item.quantity}</span>
+                <button class="plus-btn bg-gray-300 px-2 py-1 rounded" data-line="${index + 1}">+</button>
+              </div>
+              <p>${priceInEuro}€</p>
+            </div>
+          </div>
+        `;
+
+        itemContainer.appendChild(itemElement);
+      });
+
+      // Add event listeners for quantity buttons
+      document.querySelectorAll(".minus-btn").forEach((button) => {
+        button.addEventListener("click", async (e) => {
+          const line = e.target.getAttribute("data-line");
+          const quantity = parseInt(e.target.nextElementSibling.textContent) - 1;
+
+          if (quantity >= 0) {
+            await updateCartItem(line, quantity);
+          }
+        });
+      });
+
+      document.querySelectorAll(".plus-btn").forEach((button) => {
+        button.addEventListener("click", async (e) => {
+          const line = e.target.getAttribute("data-line");
+          const quantity = parseInt(e.target.previousElementSibling.textContent) + 1;
+
+          await updateCartItem(line, quantity);
+        });
+      });
+
+      // Add event listeners for remove buttons
+      document.querySelectorAll(".remove-btn").forEach((button) => {
+        button.addEventListener("click", async (e) => {
+          const line = e.target.getAttribute("data-line");
+          await updateCartItem(line, 0); // Set quantity to 0 to remove the item
+        });
+      });
+
+    } catch (error) {
+      console.error("Error fetching cart data:", error);
+    }
+  }
+
+  // Function to update the cart item quantity
+  async function updateCartItem(line, quantity) {
+    try {
+      const response = await fetch("/cart/change.js", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          line: parseInt(line),
+          quantity: parseInt(quantity),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error updating cart: ${response.statusText}`);
+      }
+
+      // Re-render the cart drawer with updated data
+      await updateCartDrawer();
+    } catch (error) {
+      console.error("Error updating cart item:", error);
+    }
+  }
+
+  // Call updateCartDrawer on page load to fetch the current cart state
+  updateCartDrawer();
+
+  // Intercept Add-to-Cart form submissions
+  document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
     form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
+      try {
         const formData = new FormData(form);
-
-        // Submit form with ajax
-        await fetch("/cart/add", {
-            method :"post"
-            body: new formData,
+        await fetch("/cart/add.js", {
+          method: "POST",
+          body: formData,
         });
 
-        //Open cart-drawer
-        document.querySelector(".cart-drawer").classList.add("cart-drawer--active")
+        // Fetch and update the cart drawer after adding a product
+        await updateCartDrawer();
+      } catch (error) {
+        console.error("Error adding product to cart:", error);
+      }
     });
-});
-
-document.querySelectorAll('.cart-drawer-header-right-close, .cart-drawer')
-.forEach((el) => {
-    el.addEventListener('click', ()=> {
-        document
-            .querySelector(".cart-drawer")
-            .classList.remove("cart-drawer--active");
-    });
+  });
 });
