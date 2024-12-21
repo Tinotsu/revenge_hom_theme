@@ -1,26 +1,17 @@
 <section
-  id="cart-drawer-section"
-  class="z-20 bg-revenge2 fixed top-0 h-full w-full md:w-[450px] right-0 transform translate-x-full transition-transform duration-300 ease-in-out"
+  id="favorites-drawer-section"
+  class="z-20 bg-revenge2 top-0 h-full w-full md:w-[450px] right-0 transform translate-x-full transition-transform duration-300 ease-in-out"
 >
-  <div id="cart-drawer" class="flex flex-col h-full">
+  <div id="favorites-drawer" class="flex flex-col h-full">
     <div class="flex justify-between items-center">
-      <h2>Votre panier</h2>
-      <p><span id="cart_item_count">Article<span id="article_s"></span></span></p>
-      <!-- Close button -->
-      <button id="close-cart-drawer" class="text-xl font-bold">X</button>
+      <h2>Vos Favoris</h2>
+      <button id="close-favorites-drawer" class="text-xl font-bold">X</button>
     </div>
-    <div id="cart_items_container" class="overflow-y-auto w-[100%] flex-grow p-4">
-      {% for item in cart.items %}
-        <div id="cart_item_title_{{ forloop.index }}"></div>
-      {% endfor %}
+    <div id="favorites_items_container" class="overflow-y-auto w-[100%] flex-grow p-4">
+      <!-- Favorite items will be dynamically inserted here -->
     </div>
     <div class="flex flex-col bg-revenge3">
-      <div class="w-full flex justify-between">
-        <p>Total :</p>
-        <p id="cart_item_total"></p>
-      </div>
-      <a href="" class="w-full bg-revenge2 text-white">règlement</a>
-      <a href="" class="w-full bg-revenge4">voir panier</a>
+      <p class="text-center p-4">Votre liste de favoris est ici.</p>
     </div>
   </div>
 </section>

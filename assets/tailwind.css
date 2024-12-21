@@ -12,6 +12,9 @@
     .a-btn1 {
       @apply text-2xl md:text-[2.5rem] uppercase border-b md:border-b-2 tracking-wider p-0 md:p-0.5;
     }
+    .a-btn2 {
+      @apply uppercase font-["ZenKakuGothicNew-Bold"];
+    }
     .a-p {
       @apply text-lg md:text-[1.5rem] font-["ZenKakuGothicNew-Light"]
     }

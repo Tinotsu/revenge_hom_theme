@@ -1,31 +1,29 @@
-<div class="featured-product group flex flex-col justify-between items-center text-center h-[300px] sm:h-[400px] md:h-[25vw] w-1/2 md:w-1/4 hover:w-1/2 hover:md:w-1/4">
-  <div class="transform flex flex-col justify-between z-5 bg-revenge4 h-[300px] sm:h-[400px] md:h-[25vw] w-full hover:w-1/2 hover:md:w-1/4 border border-revenge2 hover:md:h-[30vw] hover:shadow-lg hover:absolute origin-top hover:z-10">
+<div class="featured-product group flex flex-col justify-between items-center text-center h-[300px] sm:h-[400px] md:h-[30vw] w-1/2 md:w-1/4 hover:w-1/2 hover:md:w-1/4">
+  <div class="transform flex flex-col justify-between z-5 bg-revenge4 h-[300px] sm:h-[400px] md:h-[30vw] w-full hover:w-1/2 hover:md:w-1/4 border border-revenge2 hover:md:h-[35vw] hover:shadow-lg hover:absolute origin-top hover:z-10">
     <div class="w-full text-right">
       <button class="wishlist-btn" data-product-id="{{ product.id }}">Ajouter aux favoris</button>
     </div>
     <a href="{{ product.url }}">
-      <div class="relative flex flex-col items-center justify-center flex-grow">
-        <img
-          src="{{ product.featured_image | img_url: 'medium' }}"
-          class="h-[170px] w-[170px] md:h-[15vw] md:w-[15vw] object-cover"
-          alt="{{ product.title }}"
-          width=""
-          height=""
-        >
-        <div class=" md:hidden group-hover:block p-2 flex flex-col justify-between h-[90px] md:">
-          <h3>{{ product.title }}</h3>
-          <p>{% render 'price', product: product, price_class: '', show_compare_at_price: true %}</p>
+      <div class="mb-[15px] relative flex flex-col items-center justify-end flex-grow">
+        <div class="flex flex-col justify-between">
+          <img
+            src="{{ product.featured_image | img_url: 'medium' }}"
+            class="h-[170px] w-[170px] md:h-[24vw] md:w-[24vw] object-cover"
+            alt="{{ product.title }}"
+            width=""
+            height=""
+          >
+          <div class=" md:hidden text-revenge2 group-hover:block p-2 flex flex-col justify-between h-[120px] md:">
+            <h3 class="text-revenge2 uppercase text-[12px]">{{ product.title }}</h3>
+            <div class="flex flex-col fit-content">
+              <p class="text-revenge2 text-[16px]">
+                {% render 'price', product: product, price_class: '', show_compare_at_price: true %}
+              </p>
+              <a href="{{ product.url }}" class="a-btn2 text-[12px]">acheter</a>
+            </div>
+          </div>
         </div>
       </div>
     </a>
-    <form method="post" action="/cart/add">
-      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-      <button
-        type="submit"
-        class="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
-      >
-        Ajouter au panier
-      </button>
-    </form>
   </div>
 </div>

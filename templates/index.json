@@ -9,36 +9,36 @@
  */
 {
   "sections": {
-    "a-first-section" : {
+    "a-first-section": {
       "type": "a-first-section",
-      "settings" : {
-        "titre" : "Pyjama Zimmerli",
-        "description" : "Nouveautés",
-        "image" : "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/pyjama_zimmerli.png?v=1733059155"
+      "settings": {
+        "titre": "Pyjama Zimmerli",
+        "description": "Nouveautés",
+        "image": "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/pyjama_zimmerli.png?v=1733059155"
       }
     },
-    "a-all-categories" : {
+    "a-all-categories": {
       "type": "a-all-categories",
       "settings": {
-        "titre" : "Découvrez notre sélection",
-        "description" : "Mode sans Compromis",
+        "titre": "Découvrez notre sélection",
+        "description": "Mode sans Compromis"
       }
     },
-    "a-reservation-index" : {
+    "a-reservation-index": {
       "type": "a-reservation-index",
       "settings": {
-        "titre" : "soyez conseillé",
-        "description" : "Prenons un moment au calme pour trouver le style qui vous ressemble",
-        "bouton" : "prendre rendez-vous",
-        "image" : "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/image_2024-12-02_115114022.png?v=1733136681"
+        "titre": "soyez conseillé",
+        "description": "Prenons un moment au calme pour trouver le style qui vous ressemble",
+        "bouton": "prendre rendez-vous",
+        "image": "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/image_2024-12-02_115114022.png?v=1733136681"
       }
     },
-    "a-featured-product" : {
+    "a-featured-product": {
       "type": "a-featured-product",
       "settings": {
-        "titre" : "les plus populaires",
-        "description" : "Ce qui vous a le plus parlé",
-        "image" : "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/image_2024-12-02_204203966.png?v=1733168532",
+        "image": "https://cdn.shopify.com/s/files/1/0905/7917/3672/files/image_2024-12-02_204203966.png?v=1733168532",
+        "titre": "les plus populaires",
+        "description": "Ce qui vous a le plus parlé",
         "product_1": "boots-a-lacets-hannibal",
         "product_2": "boots-a-lacets-hannibal",
         "product_3": "boots-a-lacets-hannibal",
@@ -49,9 +49,10 @@
         "product_8": "boots-a-lacets-hannibal"
       }
     },
-    "a-fav" : {
-      "type": "a-fav"
-    },
+    "a-fav": {
+      "type": "a-fav",
+      "settings": {}
+    }
   },
   "order": [
     "a-first-section",

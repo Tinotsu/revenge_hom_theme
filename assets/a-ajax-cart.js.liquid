@@ -1,151 +1,108 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Function to update the cart drawer
-  async function updateCartDrawer() {
-    try {
-      const response = await fetch("/cart.js");
-      const cart = await response.json();
-
-      // Update cart item count
-      document.getElementById("cart_item_count").textContent = cart.item_count;
-
-      const cartDrawer = document.getElementById("cart_items_container");
-      let itemContainer = document.getElementById("cart_item_container");
-
-      if (!itemContainer) {
-        itemContainer = document.createElement("div");
-        itemContainer.id = "cart_item_container";
-        cartDrawer.appendChild(itemContainer);
-      }
-
-      itemContainer.innerHTML = "";
-
-      // Populate the container with cart items
-      cart.items.forEach((item, index) => {
-        const itemElement = document.createElement("div");
-        itemElement.classList.add("z-30", "bg-revenge1", "w-[100%]", "h-auto", "flex", "items-center", "space-x-16");
-        const priceInEuro = (item.price / 100).toFixed(2);
-        itemElement.innerHTML = `
-          <img src="${item.featured_image.url}" alt="${item.product_title}" class="w-[100px]">
-          <div class="flex flex-col w-[100%]">
-            <div class="flex">
-              <div class="flex flex-col">
-                <a href="${item.url}" class="inline">${item.product_title}</a>
-                <p>${item.selected_or_first_available_variant}</p>
-              </div>
-              <button class="remove-btn bg-red-500 text-white px-4 py-2 rounded" data-line="${index + 1}">Remove</button>
-            </div>
-            <div class="flex">
-              <div class="flex items-center space-x-2 mt-2">
-                <button class="minus-btn bg-gray-300 px-2 py-1 rounded" data-line="${index + 1}">-</button>
-                <span class="quantity_item text-lg w-2">${item.quantity}</span>
-                <button class="plus-btn bg-gray-300 px-2 py-1 rounded" data-line="${index + 1}">+</button>
-              </div>
-              <p>${priceInEuro}€</p>
-            </div>
-          </div>
-        `;
-
-        itemContainer.appendChild(itemElement);
-      });
-
-      // Add event listeners for quantity buttons
-      document.querySelectorAll(".minus-btn").forEach((button) => {
-        button.addEventListener("click", async (e) => {
-          const line = e.target.getAttribute("data-line");
-          const quantity = parseInt(e.target.nextElementSibling.textContent) - 1;
-
-          if (quantity >= 0) {
-            await updateCartItem(line, quantity);
-          }
-        });
-      });
-
-      document.querySelectorAll(".plus-btn").forEach((button) => {
-        button.addEventListener("click", async (e) => {
-          const line = e.target.getAttribute("data-line");
-          const quantity = parseInt(e.target.previousElementSibling.textContent) + 1;
-
-          await updateCartItem(line, quantity);
-        });
-      });
-
-      // Add event listeners for remove buttons
-      document.querySelectorAll(".remove-btn").forEach((button) => {
-        button.addEventListener("click", async (e) => {
-          const line = e.target.getAttribute("data-line");
-          await updateCartItem(line, 0); // Set quantity to 0 to remove the item
-        });
-      });
-
-    } catch (error) {
-      console.error("Error fetching cart data:", error);
-    }
+  // Function to get favorites from localStorage
+  function getFavorites() {
+    return JSON.parse(localStorage.getItem("favorites")) || [];
   }
 
-  // Function to update the cart item quantity
-  async function updateCartItem(line, quantity) {
-    try {
-      const response = await fetch("/cart/change.js", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          line: parseInt(line),
-          quantity: parseInt(quantity),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error updating cart: ${response.statusText}`);
-      }
-
-      // Re-render the cart drawer with updated data
-      await updateCartDrawer();
-    } catch (error) {
-      console.error("Error updating cart item:", error);
-    }
+  // Function to save favorites to localStorage
+  function saveFavorites(favorites) {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   }
 
+  // Function to update the favorites drawer
+  async function updateFavoritesDrawer() {
+    const favorites = getFavorites(); // Get favorites from localStorage
+    const favoritesContainer = document.getElementById("favorites_items_container");
 
-  const cartDrawerSection = document.getElementById("cart-drawer-section");
-  const closeButton = document.getElementById("close-cart-drawer");
-  /*
-  const openCartButton = document.getElementById("open-cart-drawer");
+    // Clear current items in the drawer
+    favoritesContainer.innerHTML = "";
 
-  // Open the cart drawer
-  openCartButton.addEventListener("click", () => {
-    cartDrawerSection.classList.remove("translate-x-full");
-    cartDrawerSection.classList.add("translate-x-0");
-  });
-*/
-  // Close the cart drawer
-  closeButton.addEventListener("click", () => {
-    cartDrawerSection.classList.remove("translate-x-0");
-    cartDrawerSection.classList.add("hidden");
-  });
+    if (favorites.length === 0) {
+      favoritesContainer.innerHTML = `<p class="text-center text-gray-500">Votre liste de favoris est vide.</p>`;
+      return;
+    }
 
+    // Populate favorites in the drawer
+    favorites.forEach((item, index) => {
+      const itemElement = document.createElement("div");
+      itemElement.classList.add(
+        "z-30",
+        "bg-revenge1",
+        "w-[100%]",
+        "h-auto",
+        "flex",
+        "items-center",
+        "space-x-16",
+        "p-4",
+        "border-b",
+        "border-gray-300"
+      );
+      itemElement.innerHTML = `
+        <img src="${item.image}" alt="${item.title}" class="w-[100px] h-auto">
+        <div class="flex flex-col w-[100%]">
+          <a href="${item.url}" class="font-semibold hover:underline">${item.title}</a>
+          <button class="remove-favorite-btn bg-red-500 text-white px-4 py-2 rounded mt-2" data-index="${index}">
+            Retirer
+          </button>
+        </div>
+      `;
+      favoritesContainer.appendChild(itemElement);
+    });
 
-  // Call updateCartDrawer on page load to fetch the current cart state
-  updateCartDrawer();
+    // Add event listeners to remove favorite items
+    document.querySelectorAll(".remove-favorite-btn").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const index = e.target.getAttribute("data-index");
+        const updatedFavorites = getFavorites();
+        updatedFavorites.splice(index, 1); // Remove the item by index
+        saveFavorites(updatedFavorites); // Save updated list
+        updateFavoritesDrawer(); // Re-render the drawer
+      });
+    });
+  }
 
-  // Intercept Add-to-Cart form submissions
-  document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  // Function to handle adding items to favorites
+  document.querySelectorAll(".add-to-favorites").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const item = {
+        title: e.target.getAttribute("data-title"),
+        image: e.target.getAttribute("data-image"),
+        url: e.target.getAttribute("data-url"),
+      };
 
-      try {
-        const formData = new FormData(form);
-        await fetch("/cart/add.js", {
-          method: "POST",
-          body: formData,
-        });
+      const favorites = getFavorites();
+      const alreadyAdded = favorites.some((fav) => fav.url === item.url);
 
-        // Fetch and update the cart drawer after adding a product
-        await updateCartDrawer();
-      } catch (error) {
-        console.error("Error adding product to cart:", error);
+      if (!alreadyAdded) {
+        favorites.push(item); // Add new item
+        saveFavorites(favorites); // Save to localStorage
+        updateFavoritesDrawer(); // Update drawer
+        alert("Article ajouté à vos favoris!");
+      } else {
+        alert("Cet article est déjà dans vos favoris.");
       }
     });
   });
+
+  // Favorites drawer open/close logic
+  const favoritesDrawerSection = document.getElementById("favorites-drawer-section");
+  const closeButton = document.getElementById("close-favorites-drawer");
+
+  // Open favorites drawer
+  document.querySelectorAll(".open-favorites-drawer").forEach((button) => {
+    button.addEventListener("click", () => {
+      favoritesDrawerSection.classList.remove("translate-x-full");
+      favoritesDrawerSection.classList.add("translate-x-0");
+      updateFavoritesDrawer(); // Refresh drawer content
+    });
+  });
+
+  // Close favorites drawer
+  closeButton.addEventListener("click", () => {
+    favoritesDrawerSection.classList.remove("translate-x-0");
+    favoritesDrawerSection.classList.add("translate-x-full");
+  });
+
+  // Initialize the favorites drawer on page load
+  updateFavoritesDrawer();
 });

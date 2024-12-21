@@ -315,7 +315,6 @@
       {{ content_for_layout }}
     </main>
 
-    {% section 'a-cart-drawer' %}
 
     {% sections 'footer-group' %}
 
@@ -323,6 +322,8 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
+
+    {% sections 'a-cart-drawer.liquid' %}
 
     <script>
       window.shopUrl = '{{ request.origin }}';
@@ -377,7 +378,8 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    <script src="{{ 'a-ajax-cart.js.liquid' | asset_url }}" defer></script>
+    <script scr="{{ 'a-ajax-cart.js.liquid' |asset_url }}" defer></script>
+    <script src="{{ 'product-form.js' | asset_url }}" defer></script>
     <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
 
   </body>
