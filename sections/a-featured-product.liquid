@@ -1,4 +1,4 @@
-<section class="bg-revenge3">
+<section class="bg-revenge4">
   <img src="{{ section.settings.image}}" class="w-[100vw] md:h-[300px] md:object-top object-cover" width="" height="">
   <div>
     <div class="md:px-[30px] py-[24px] md:py-[72px]">
@@ -7,7 +7,7 @@
         <h2 class="a-h2 text-revenge2">{{ section.settings.titre }}</h2>
       </div>
     </div>
-    <div class="flex flex-wrap bg-revenge4">
+    <div class="flex flex-wrap bg-revenge4 mx-0 md:mx-[10px]">
       {% for i in (1..8) %}
         {% assign key = "product_" | append: i %}
         {% assign product_handle = section.settings[key] %}

@@ -1,15 +1,20 @@
 <div class="featured-product group flex flex-col justify-between items-center text-center h-[300px] sm:h-[400px] md:h-[30vw] w-1/2 md:w-1/4 hover:w-1/2 hover:md:w-1/4">
-  <div class="transform flex flex-col justify-between z-5 bg-revenge4 h-[300px] sm:h-[400px] md:h-[30vw] w-full hover:w-1/2 hover:md:w-1/4 border border-revenge2 hover:md:h-[35vw] hover:shadow-lg hover:absolute origin-top hover:z-10">
+  <div class="transform z-0 flex flex-col justify-between bg-revenge4 h-[300px] sm:h-[400px] md:h-[30vw] w-full hover:w-1/2 hover:md:w-1/4 border border-revenge2 hover:md:h-[35vw] hover:shadow-lg hover:absolute origin-top hover:z-[1]">
     <div class="w-full text-right">
-      <button 
-      class="add-to-favorites bg-blue-500 text-white px-4 py-2 rounded" 
-      data-title="{{ product.title }}"
-      data-image="{{ product.featured_image | img_url: '300x300' }}"
-      data-url="{{ product.url }}"
-    >
-      Add to Favorites
-    </button>
+      <button
+        class="add-to-favorites mt-6 mr-6"
+        data-title="{{ product.title }}"
+        data-image="{{ product.featured_image | img_url: '300x300' }}"
+        data-url="{{ product.url }}"
+        data-product-id="{{ product.id }}"
+      >
+        <div class="svg_wishlist">
+          <svg width="10" height="14" viewBox="0 0 15 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5 1.5V18.5625L8.175 15.87L7.5 15.5325L6.825 15.87L1.5 18.5625V1.5H13.5ZM13.5 0H1.5C1.10218 0 0.720644 0.158035 0.43934 0.43934C0.158035 0.720644 0 1.10218 0 1.5V21L7.5 17.25L15 21V1.5C15 1.10218 14.842 0.720644 14.5607 0.43934C14.2794 0.158035 13.8978 0 13.5 0Z" fill="#4B3E37"/>
+          </svg>
         </div>
+      </button>
+    </div>
     <a href="{{ product.url }}">
       <div class="md:mb-[15px] relative flex flex-col items-center justify-end flex-grow">
         <div class="flex flex-col justify-between">
@@ -36,3 +41,8 @@
     </a>
   </div>
 </div>
+<style>
+  .wishlist-active {
+
+  }
+</style>
