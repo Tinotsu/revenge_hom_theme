@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("salut");
+  console.log("JavaScript loaded successfully!");
+
+
   // Function to get favorites from localStorage
   function getFavorites() {
     return JSON.parse(localStorage.getItem("favorites")) || [];
@@ -106,3 +110,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize the favorites drawer on page load
   updateFavoritesDrawer();
 });
+

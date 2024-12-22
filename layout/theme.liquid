@@ -35,6 +35,8 @@
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
 
+    <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
@@ -315,6 +317,7 @@
       {{ content_for_layout }}
     </main>
 
+    {% section 'a-wishlist' %}
 
     {% sections 'footer-group' %}
 
@@ -322,8 +325,6 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
-
-    {% sections 'a-cart-drawer.liquid' %}
 
     <script>
       window.shopUrl = '{{ request.origin }}';
@@ -377,10 +378,6 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-
-    <script scr="{{ 'a-ajax-cart.js.liquid' |asset_url }}" defer></script>
-    <script src="{{ 'product-form.js' | asset_url }}" defer></script>
-    <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
 
   </body>
 </html>

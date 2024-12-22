@@ -49,16 +49,11 @@
         "product_8": "boots-a-lacets-hannibal"
       }
     },
-    "a-fav": {
-      "type": "a-fav",
-      "settings": {}
-    }
   },
   "order": [
     "a-first-section",
     "a-all-categories",
     "a-reservation-index",
     "a-featured-product",
-    "a-fav"
   ]
 }

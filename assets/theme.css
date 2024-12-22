@@ -637,7 +637,7 @@ video {
 }
 
 .a-btn2 {
-  font-family: "ZenKakuGothicNew-Bold";
+  font-family: "ZenKakuGothicNew-Black";
   text-transform: uppercase;
 }
 
@@ -655,6 +655,10 @@ video {
 
 .fixed {
   position: fixed;
+}
+
+.absolute {
+  position: absolute;
 }
 
 .relative {
@@ -691,10 +695,6 @@ video {
 
 .m-4 {
   margin: 1rem;
-}
-
-.mb-\[15px\] {
-  margin-bottom: 15px;
 }
 
 .mt-2 {
@@ -751,10 +751,6 @@ video {
 
 .h-full {
   height: 100%;
-}
-
-.h-\[120px\] {
-  height: 120px;
 }
 
 .w-1\/2 {
@@ -1017,6 +1013,10 @@ video {
   text-align: right;
 }
 
+.font-\[ZenKakuGothicNew-Bold\] {
+  font-family: ZenKakuGothicNew-Bold;
+}
+
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -1141,6 +1141,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:mb-\[15px\] {
+    margin-bottom: 15px;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -1149,8 +1153,8 @@ video {
     display: none;
   }
 
-  .md\:h-\[15vw\] {
-    height: 15vw;
+  .md\:h-\[24vw\] {
+    height: 24vw;
   }
 
   .md\:h-\[300px\] {
@@ -1169,10 +1173,6 @@ video {
     height: 75vh;
   }
 
-  .md\:h-\[24vw\] {
-    height: 24vw;
-  }
-
   .md\:w-1\/4 {
     width: 25%;
   }
@@ -1181,8 +1181,8 @@ video {
     width: 12rem;
   }
 
-  .md\:w-\[15vw\] {
-    width: 15vw;
+  .md\:w-\[24vw\] {
+    width: 24vw;
   }
 
   .md\:w-\[250px\] {
@@ -1199,10 +1199,6 @@ video {
 
   .md\:w-\[55vw\] {
     width: 55vw;
-  }
-
-  .md\:w-\[24vw\] {
-    width: 24vw;
   }
 
   .md\:max-w-\[1000px\] {
@@ -1288,6 +1284,10 @@ video {
 
   .hover\:md\:w-1\/4:hover {
     width: 25%;
+  }
+
+  .group:hover .md\:group-hover\:block {
+    display: block;
   }
 }
 
