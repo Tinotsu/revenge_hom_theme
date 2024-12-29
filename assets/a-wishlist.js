@@ -65,40 +65,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
-
-  const svgWishlist = document.querySelectorAll(".svg_wishlist");
-
-
-
-  document.querySelectorAll(".add-to-favorites").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const svgWishlist = button.querySelector(".svg_wishlist");
-      const path = svgWishlist.querySelector("path");
-  
-      // Toggle color by toggling class
-      if (path.classList.contains("wishlist-active")) {
-        path.classList.remove("wishlist-active");
-        path.setAttribute (
-          "d",
-          "M13.5 1.5V18.5625L8.175 15.87L7.5 15.5325L6.825 15.87L1.5 18.5625V1.5H13.5ZM13.5 0H1.5C1.10218 0 0.720644 0.158035 0.43934 0.43934C0.158035 0.720644 0 1.10218 0 1.5V21L7.5 17.25L15 21V1.5C15 1.10218 14.842 0.720644 14.5607 0.43934C14.2794 0.158035 13.8978 0 13.5 0Z"
-        );
-        console.log("if work");
-      } else {
-        path.classList.add("wishlist-active");
-        console.log("else work");
-        path.setAttribute (
+  // Function to change the SVG for a specific product
+  function changeSVG(productId) {
+    document.querySelectorAll(`#svg_id_${productId}`).forEach((svg) => {
+      const path = svg.querySelector("path");
+      if (path) {
+        path.setAttribute(
           "d",
           "M13.5 0H1.5C1.10218 0 0.720644 0.158035 0.43934 0.43934C0.158035 0.720644 0 1.10218 0 1.5V21L7.5 17.2095L15 21V1.5C15 1.10218 14.842 0.720644 14.5607 0.43934C14.2794 0.158035 13.8978 0 13.5 0Z"
         );
+        svg.classList.add("wishlist-active"); // Optional: Add a class to style
+      } else {
+        console.error(`Path not found in SVG for product ID: ${productId}`);
       }
     });
-  });
+  }
 
-// Function to handle adding items to favorites
-document.querySelectorAll(".add-to-favorites").forEach((button) => {
+  
+
+ // Function to handle adding items to favorites
+ document.querySelectorAll(".add-to-favorites").forEach((button) => {
   button.addEventListener("click", (e) => {
-    // Ensure you reference the button element
     const buttonElement = e.currentTarget;
 
     const item = {
@@ -107,6 +94,7 @@ document.querySelectorAll(".add-to-favorites").forEach((button) => {
       url: buttonElement.getAttribute("data-url"),
     };
 
+    const productId = buttonElement.getAttribute("data-product-id");
     const favorites = getFavorites();
     const alreadyAdded = favorites.some((fav) => fav.url === item.url);
 
@@ -114,13 +102,13 @@ document.querySelectorAll(".add-to-favorites").forEach((button) => {
       favorites.push(item); // Add new item
       saveFavorites(favorites); // Save to localStorage
       updateFavoritesDrawer(); // Update drawer
+      changeSVG(productId); // Update SVG for the specific product
       alert("Article ajouté à vos favoris!");
     } else {
       alert("Cet article est déjà dans vos favoris.");
     }
   });
 });
-
 
   // Favorites drawer open/close logic
   const favoritesDrawerSection = document.getElementById(
@@ -132,14 +120,22 @@ document.querySelectorAll(".add-to-favorites").forEach((button) => {
   document.querySelectorAll(".open-favorites-drawer").forEach((button) => {
     button.addEventListener("click", () => {
       favoritesDrawerSection.classList.remove("translate-x-full");
-      favoritesDrawerSection.classList.add("translate-x-0", "md:right-5", "shadow-2xl");
+      favoritesDrawerSection.classList.add(
+        "translate-x-0",
+        "md:right-5",
+        "shadow-2xl"
+      );
       updateFavoritesDrawer(); // Refresh drawer content
     });
   });
 
   // Close favorites drawer
   closeButton.addEventListener("click", () => {
-    favoritesDrawerSection.classList.remove("translate-x-0", "md:right-5", "shadow-2xl");
+    favoritesDrawerSection.classList.remove(
+      "translate-x-0",
+      "md:right-5",
+      "shadow-2xl"
+    );
     favoritesDrawerSection.classList.add("translate-x-full");
   });
 
