@@ -10,6 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function saveFavorites(favorites) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }
+  
+  //Function to get the url's fav
+  function getFavoritesUrl() {
+    const favorites = getFavorites();
+    return favorites.map((item) => item.url);
+  }
+
+  // Function to check if a product URL is in favorites
+  const isInFavorites = (productUrl) => {
+    const favoritesUrl = getFavoritesUrl();
+    return favoritesUrl.includes(productUrl); // Check if URL is present
+  };
 
   // Function to update the favorites drawer
   async function updateFavoritesDrawer() {
@@ -81,34 +93,45 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+// Loop for change the SVG when the page is loaded
+document.querySelectorAll(".featured-product").forEach((productElement) => {
+  const productUrl = productElement.querySelector(".add-to-favorites").getAttribute("data-url");
+  const productId = productElement.querySelector(".add-to-favorites").getAttribute("data-product-id");
   
-
- // Function to handle adding items to favorites
- document.querySelectorAll(".add-to-favorites").forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const buttonElement = e.currentTarget;
-
-    const item = {
-      title: buttonElement.getAttribute("data-title"),
-      image: buttonElement.getAttribute("data-image"),
-      url: buttonElement.getAttribute("data-url"),
-    };
-
-    const productId = buttonElement.getAttribute("data-product-id");
-    const favorites = getFavorites();
-    const alreadyAdded = favorites.some((fav) => fav.url === item.url);
-
-    if (!alreadyAdded) {
-      favorites.push(item); // Add new item
-      saveFavorites(favorites); // Save to localStorage
-      updateFavoritesDrawer(); // Update drawer
-      changeSVG(productId); // Update SVG for the specific product
-      alert("Article ajouté à vos favoris!");
-    } else {
-      alert("Cet article est déjà dans vos favoris.");
-    }
-  });
+  if (isInFavorites(productUrl)) {
+      console.log(`${productUrl} is in the favorites!`);
+      changeSVG(productId)
+  } else {
+      console.log(`${productUrl} is NOT in the favorites!`);
+  }
 });
+  
+  // Function to handle adding items to favorites
+  document.querySelectorAll(".add-to-favorites").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const buttonElement = e.currentTarget;
+
+      const item = {
+        title: buttonElement.getAttribute("data-title"),
+        image: buttonElement.getAttribute("data-image"),
+        url: buttonElement.getAttribute("data-url"),
+      };
+
+      const productId = buttonElement.getAttribute("data-product-id");
+      const favorites = getFavorites();
+      const alreadyAdded = favorites.some((fav) => fav.url === item.url);
+
+      if (!alreadyAdded) {
+        favorites.push(item); // Add new item
+        saveFavorites(favorites); // Save to localStorage
+        updateFavoritesDrawer(); // Update drawer
+        changeSVG(productId); // Update SVG for the specific product
+        alert("Article ajouté à vos favoris!");
+      } else {
+        alert("Cet article est déjà dans vos favoris.");
+      }
+    });
+  });
 
   // Favorites drawer open/close logic
   const favoritesDrawerSection = document.getElementById(
