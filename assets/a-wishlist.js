@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function saveFavorites(favorites) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }
-  
+
   //Function to get the url's fav
   function getFavoritesUrl() {
     const favorites = getFavorites();
@@ -54,26 +54,17 @@ document.addEventListener("DOMContentLoaded", () => {
         "border-gray-300"
       );
       itemElement.innerHTML = `
-        <img src="${item.image}" alt="${item.title}" class="w-[100px] h-auto">
-        <div class="flex flex-col w-[100%]">
-          <a href="${item.url}" class="font-semibold hover:underline">${item.title}</a>
-          <button class="remove-favorite-btn bg-red-500 text-white px-4 py-2 rounded mt-2" data-index="${index}">
-            Retirer
-          </button>
-        </div>
-      `;
+      <img src="${item.image}" alt="${item.title}" class="w-[100px] h-auto">
+      <div class="flex flex-col w-[100%]">
+        <a href="${item.url}" class="font-semibold hover:underline">${item.title}</a>
+        <button class="remove-favorite-btn bg-red-500 text-white px-4 py-2 rounded mt-2" 
+          data-index="${index}" 
+          data-product-id="${item.id}">
+          Retirer
+        </button>
+      </div>
+  `;
       favoritesContainer.appendChild(itemElement);
-    });
-
-    // Add event listeners to remove favorite items
-    document.querySelectorAll(".remove-favorite-btn").forEach((button) => {
-      button.addEventListener("click", (e) => {
-        const index = e.target.getAttribute("data-index");
-        const updatedFavorites = getFavorites();
-        updatedFavorites.splice(index, 1); // Remove the item by index
-        saveFavorites(updatedFavorites); // Save updated list
-        updateFavoritesDrawer(); // Re-render the drawer
-      });
     });
   }
 
@@ -93,19 +84,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-// Loop for change the SVG when the page is loaded
-document.querySelectorAll(".featured-product").forEach((productElement) => {
-  const productUrl = productElement.querySelector(".add-to-favorites").getAttribute("data-url");
-  const productId = productElement.querySelector(".add-to-favorites").getAttribute("data-product-id");
-  
-  if (isInFavorites(productUrl)) {
+  // Function to rechange the SVG for a specific product
+  function rechangeSVG(productId) {
+    document.querySelectorAll(`#svg_id_${productId}`).forEach((svg) => {
+      const path = svg.querySelector("path");
+      if (path) {
+        path.setAttribute(
+          "d",
+          "M13.5 1.5V18.5625L8.175 15.87L7.5 15.5325L6.825 15.87L1.5 18.5625V1.5H13.5ZM13.5 0H1.5C1.10218 0 0.720644 0.158035 0.43934 0.43934C0.158035 0.720644 0 1.10218 0 1.5V21L7.5 17.25L15 21V1.5C15 1.10218 14.842 0.720644 14.5607 0.43934C14.2794 0.158035 13.8978 0 13.5 0Z"
+        );
+        svg.classList.add("wishlist-active"); // Optional: Add a class to style
+      } else {
+        console.error(`Path not found in SVG for product ID: ${productId}`);
+      }
+    });
+  }
+
+  // Loop for change the SVG when the page is loaded
+  document.querySelectorAll(".featured-product").forEach((productElement) => {
+    const productUrl = productElement
+      .querySelector(".add-to-favorites")
+      .getAttribute("data-url");
+    const productId = productElement
+      .querySelector(".add-to-favorites")
+      .getAttribute("data-product-id");
+
+    if (isInFavorites(productUrl)) {
       console.log(`${productUrl} is in the favorites!`);
-      changeSVG(productId)
-  } else {
+      changeSVG(productId);
+    } else {
       console.log(`${productUrl} is NOT in the favorites!`);
+    }
+  });
+
+// Event delegation for remove button (static parent listening for clicks on dynamic children)
+document.body.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-favorite-btn")) {
+      const index = e.target.getAttribute("data-index");
+      const productId = e.target.getAttribute("data-product-id");
+      
+      const updatedFavorites = getFavorites();
+      updatedFavorites.splice(index, 1); // Remove the item by index
+      saveFavorites(updatedFavorites); // Save updated list
+      updateFavoritesDrawer(); // Re-render the drawer
+      rechangeSVG(productId); // Update the SVG
   }
 });
-  
+
+
   // Function to handle adding items to favorites
   document.querySelectorAll(".add-to-favorites").forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -126,9 +152,13 @@ document.querySelectorAll(".featured-product").forEach((productElement) => {
         saveFavorites(favorites); // Save to localStorage
         updateFavoritesDrawer(); // Update drawer
         changeSVG(productId); // Update SVG for the specific product
-        alert("Article ajouté à vos favoris!");
       } else {
-        alert("Cet article est déjà dans vos favoris.");
+        const index = e.target.getAttribute("data-index");
+        const updatedFavorites = getFavorites();
+        updatedFavorites.splice(index, 1); // Remove the item by index
+        saveFavorites(updatedFavorites); // Save updated list
+        updateFavoritesDrawer(); // Re-render the drawer
+        rechangeSVG(productId);
       }
     });
   });
