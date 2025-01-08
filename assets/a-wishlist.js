@@ -23,6 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return favoritesUrl.includes(productUrl); // Check if URL is present
   };
 
+  // Function to update the favorites count in the span
+  function updateFavoritesCount() {
+    const favoritesCountElement = document.querySelector(".favorites-count");
+    const favorites = getFavorites();
+    favoritesCountElement.innerText = favorites.length;
+  }
+
+  updateFavoritesCount()
+  
   // Function to update the favorites drawer
   async function updateFavoritesDrawer() {
     const favorites = getFavorites(); // Get favorites from localStorage
@@ -50,11 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "items-center",
         "space-x-16",
         "p-4",
-        "border-b",
+        "border-2",
         "border-gray-300"
       );
       itemElement.innerHTML = `
-      <img src="${item.image}" alt="${item.title}" class="w-[100px] h-auto">
+      <img src="${item.image}" alt="${item.title}" class="w-[50px] h-auto" width="50px" height="">
       <div class="flex flex-col w-[100%]">
         <a href="${item.url}" class="font-semibold hover:underline">${item.title}</a>
         <button class="remove-favorite-btn bg-red-500 text-white px-4 py-2 rounded mt-2" 
@@ -117,20 +126,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-// Event delegation for remove button (static parent listening for clicks on dynamic children)
-document.body.addEventListener("click", (e) => {
-  if (e.target.classList.contains("remove-favorite-btn")) {
+  // Event delegation for remove button (static parent listening for clicks on dynamic children)
+  document.body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("remove-favorite-btn")) {
       const index = e.target.getAttribute("data-index");
       const productId = e.target.getAttribute("data-product-id");
-      
+
       const updatedFavorites = getFavorites();
       updatedFavorites.splice(index, 1); // Remove the item by index
       saveFavorites(updatedFavorites); // Save updated list
       updateFavoritesDrawer(); // Re-render the drawer
       rechangeSVG(productId); // Update the SVG
-  }
-});
-
+    }
+  });
 
   // Function to handle adding items to favorites
   document.querySelectorAll(".add-to-favorites").forEach((button) => {
@@ -171,23 +179,52 @@ document.body.addEventListener("click", (e) => {
 
   // Open favorites drawer
   document.querySelectorAll(".open-favorites-drawer").forEach((button) => {
-    button.addEventListener("click", () => {
-      favoritesDrawerSection.classList.remove("translate-x-full");
-      favoritesDrawerSection.classList.add(
-        "translate-x-0",
-        "md:right-5",
-        "shadow-2xl"
-      );
+    button.addEventListener("click", (e) => {
+      if (favoritesDrawerSection.classList.contains("favorites-drawer-open")) {
+        favoritesDrawerSection.classList.remove(
+          "translate-x-0",
+          "md:right-5",
+          "shadow-2xl",
+          "favorites-drawer-open"
+        );
+        favoritesDrawerSection.classList.add("translate-x-full");
+      } else {
+        favoritesDrawerSection.classList.remove("translate-x-full");
+        favoritesDrawerSection.classList.add(
+          "translate-x-0",
+          "md:right-5",
+          "shadow-2xl",
+          "favorites-drawer-open"
+        );
+      }
       updateFavoritesDrawer(); // Refresh drawer content
+      e.stopPropagation(); // Prevent closing when clicking the button itself
     });
   });
+
+  window.addEventListener("click", (event) => {
+    const favoritesDrawerSection = document.getElementById("favorites-drawer-section");
+    if (
+        favoritesDrawerSection.classList.contains("favorites-drawer-open") && 
+        !favoritesDrawerSection.contains(event.target)
+    ) {
+        favoritesDrawerSection.classList.remove(
+            "translate-x-0",
+            "md:right-5",
+            "shadow-2xl",
+            "favorites-drawer-open"
+        );
+        favoritesDrawerSection.classList.add("translate-x-full");
+    }
+});
 
   // Close favorites drawer
   closeButton.addEventListener("click", () => {
     favoritesDrawerSection.classList.remove(
       "translate-x-0",
       "md:right-5",
-      "shadow-2xl"
+      "shadow-2xl",
+      "favorites-drawer-open"
     );
     favoritesDrawerSection.classList.add("translate-x-full");
   });

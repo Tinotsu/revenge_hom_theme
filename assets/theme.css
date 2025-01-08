@@ -607,6 +607,18 @@ video {
   }
 }
 
+.a-h3 {
+  font-family: "ZenKakuGothicNew-Medium";
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .a-h3 {
+    font-size: 4rem;
+  }
+}
+
 .a-h4 {
   font-family: "ZenKakuGothicNew-Regular";
   font-size: 1.875rem;
@@ -669,8 +681,8 @@ video {
   right: 0px;
 }
 
-.top-\[90px\] {
-  top: 90px;
+.top-\[120px\] {
+  top: 120px;
 }
 
 .isolate {
@@ -746,8 +758,8 @@ video {
   height: 60vh;
 }
 
-.h-\[85vh\] {
-  height: 85vh;
+.h-\[75vh\] {
+  height: 75vh;
 }
 
 .h-\[90px\] {
@@ -756,6 +768,26 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.h-\[30px\] {
+  height: 30px;
+}
+
+.h-\[100px\] {
+  height: 100px;
+}
+
+.h-\[50px\] {
+  height: 50px;
+}
+
+.h-\[60px\] {
+  height: 60px;
 }
 
 .w-1\/2 {
@@ -823,8 +855,16 @@ video {
   flex-wrap: wrap;
 }
 
+.items-start {
+  align-items: flex-start;
+}
+
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-end {
@@ -889,10 +929,6 @@ video {
   border-width: 1px;
 }
 
-.border-\[2px\] {
-  border-width: 2px;
-}
-
 .border-revenge1 {
   --tw-border-opacity: 1;
   border-color: rgb(246 133 50 / var(--tw-border-opacity, 1));
@@ -945,6 +981,10 @@ video {
 
 .p-4 {
   padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
 }
 
 .px-4 {
@@ -1036,6 +1076,12 @@ video {
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-\[0_0_6px_rgba\(0\2c 0\2c 0\2c 0\.4\)\] {
+  --tw-shadow: 0 0 6px rgba(0,0,0,0.4);
+  --tw-shadow-colored: 0 0 6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -1145,8 +1191,8 @@ video {
     width: 250px;
   }
 
-  .md\:w-\[450px\] {
-    width: 450px;
+  .md\:w-\[350px\] {
+    width: 350px;
   }
 
   .md\:w-\[45vw\] {
