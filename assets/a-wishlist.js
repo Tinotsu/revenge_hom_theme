@@ -6,9 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return JSON.parse(localStorage.getItem("favorites")) || [];
   }
 
-  // Function to save favorites to localStorage
+  // Function to save favorites to localStorage and update the count
   function saveFavorites(favorites) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
+    updateFavoritesCount();
   }
 
   //Function to get the url's fav
@@ -29,8 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const favorites = getFavorites();
     favoritesCountElement.innerText = favorites.length;
   }
-
-  updateFavoritesCount()
   
   // Function to update the favorites drawer
   async function updateFavoritesDrawer() {
@@ -63,9 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
         "border-gray-300"
       );
       itemElement.innerHTML = `
-      <img src="${item.image}" alt="${item.title}" class="w-[50px] h-auto" width="50px" height="">
+      <img src="${item.image}" alt="${item.title}" class="w-[100px] h-auto"S width="100px" height="">
       <div class="flex flex-col w-[100%]">
         <a href="${item.url}" class="font-semibold hover:underline">${item.title}</a>
+        <p>${item.price}</p>
         <button class="remove-favorite-btn bg-red-500 text-white px-4 py-2 rounded mt-2" 
           data-index="${index}" 
           data-product-id="${item.id}">
@@ -149,6 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
         title: buttonElement.getAttribute("data-title"),
         image: buttonElement.getAttribute("data-image"),
         url: buttonElement.getAttribute("data-url"),
+        id: buttonElement.getAttribute("data-product-id"),
+        price: buttonElement.getAttribute("data-price")
       };
 
       const productId = buttonElement.getAttribute("data-product-id");
@@ -201,22 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation(); // Prevent closing when clicking the button itself
     });
   });
-
-  window.addEventListener("click", (event) => {
-    const favoritesDrawerSection = document.getElementById("favorites-drawer-section");
-    if (
-        favoritesDrawerSection.classList.contains("favorites-drawer-open") && 
-        !favoritesDrawerSection.contains(event.target)
-    ) {
-        favoritesDrawerSection.classList.remove(
-            "translate-x-0",
-            "md:right-5",
-            "shadow-2xl",
-            "favorites-drawer-open"
-        );
-        favoritesDrawerSection.classList.add("translate-x-full");
-    }
-});
 
   // Close favorites drawer
   closeButton.addEventListener("click", () => {

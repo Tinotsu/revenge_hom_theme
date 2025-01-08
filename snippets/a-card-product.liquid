@@ -7,6 +7,7 @@
         data-image="{{ product.featured_image | img_url: '300x300' }}"
         data-url="{{ product.url }}"
         data-product-id="{{ product.id }}"
+        data-price="{{ product.price | money }}"
       >
         <div class="svg_wishlist" id="svg_id_{{ product.id }}">
           <svg width="10" height="14" viewBox="0 0 15 21" fill="none" xmlns="http://www.w3.org/2000/svg">

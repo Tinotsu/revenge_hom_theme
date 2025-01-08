@@ -754,6 +754,10 @@ video {
   height: 300px;
 }
 
+.h-\[60px\] {
+  height: 60px;
+}
+
 .h-\[60vh\] {
   height: 60vh;
 }
@@ -768,26 +772,6 @@ video {
 
 .h-full {
   height: 100%;
-}
-
-.h-12 {
-  height: 3rem;
-}
-
-.h-\[30px\] {
-  height: 30px;
-}
-
-.h-\[100px\] {
-  height: 100px;
-}
-
-.h-\[50px\] {
-  height: 50px;
-}
-
-.h-\[60px\] {
-  height: 60px;
 }
 
 .w-1\/2 {
@@ -861,10 +845,6 @@ video {
 
 .items-center {
   align-items: center;
-}
-
-.justify-start {
-  justify-content: flex-start;
 }
 
 .justify-end {
