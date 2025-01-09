@@ -710,6 +710,10 @@ video {
   margin-right: 0px;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .mr-6 {
   margin-right: 1.5rem;
 }
@@ -961,10 +965,6 @@ video {
 
 .p-4 {
   padding: 1rem;
-}
-
-.p-6 {
-  padding: 1.5rem;
 }
 
 .px-4 {
@@ -1252,12 +1252,16 @@ video {
     text-align: left;
   }
 
+  .md\:text-\[2rem\] {
+    font-size: 2rem;
+  }
+
   .md\:leading-\[3rem\] {
     line-height: 3rem;
   }
 
-  .hover\:md\:h-\[35vw\]:hover {
-    height: 35vw;
+  .hover\:md\:h-\[320px\]:hover {
+    height: 320px;
   }
 
   .hover\:md\:w-1\/4:hover {
@@ -1276,5 +1280,9 @@ video {
 
   .lg\:p-\[60px\] {
     padding: 60px;
+  }
+
+  .hover\:lg\:h-\[500px\]:hover {
+    height: 500px;
   }
 }

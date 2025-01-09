@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const favorites = getFavorites();
     favoritesCountElement.innerText = favorites.length;
   }
-  
+  updateFavoritesCount();
+
   // Function to update the favorites drawer
   async function updateFavoritesDrawer() {
     const favorites = getFavorites(); // Get favorites from localStorage
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     favoritesContainer.innerHTML = "";
 
     if (favorites.length === 0) {
-      favoritesContainer.innerHTML = `<p class="text-center text-gray-500">Votre liste de favoris est vide.</p>`;
+      favoritesContainer.innerHTML = `<p class="text-center text-revenge2">Votre liste de favoris est vide.</p>`;
       return;
     }
 
@@ -51,28 +52,31 @@ document.addEventListener("DOMContentLoaded", () => {
       const itemElement = document.createElement("div");
       itemElement.classList.add(
         "z-30",
-        "bg-revenge1",
+        "bg-revenge4",
         "w-[100%]",
         "h-auto",
         "flex",
-        "items-center",
-        "space-x-16",
         "p-4",
-        "border-2",
-        "border-gray-300"
       );
+      itemElement.style.cssText = `
+      margin-bottom: 10px;
+      max-height: 120px;
+      `;
       itemElement.innerHTML = `
-      <img src="${item.image}" alt="${item.title}" class="w-[100px] h-auto"S width="100px" height="">
-      <div class="flex flex-col w-[100%]">
-        <a href="${item.url}" class="font-semibold hover:underline">${item.title}</a>
-        <p>${item.price}</p>
-        <button class="remove-favorite-btn bg-red-500 text-white px-4 py-2 rounded mt-2" 
-          data-index="${index}" 
-          data-product-id="${item.id}">
-          Retirer
+      <img src="${item.image}" alt="${item.title}" class="w-[100px] h-full" width="100px" height="">
+      <div class="flex flex-col justify-between h-[100px] w-[100%]" style="padding-left:5px">
+        <a href="${item.url}" class="text-revenge2 uppercase text-[12px] font-[ZenKakuGothicNew-Bold] hover:underline">${item.title}</a>
+        <p>${item.price}</p> 
+      </div>
+      <div style="margin-top:-5px">
+        <button class="remove-favorite-btn text-xs" 
+            style="font-size:small; padding-left:5px"
+            data-index="${index}" 
+            data-product-id="${item.id}">
+            Retirer
         </button>
       </div>
-  `;
+      `;
       favoritesContainer.appendChild(itemElement);
     });
   }
@@ -150,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         image: buttonElement.getAttribute("data-image"),
         url: buttonElement.getAttribute("data-url"),
         id: buttonElement.getAttribute("data-product-id"),
-        price: buttonElement.getAttribute("data-price")
+        price: buttonElement.getAttribute("data-price"),
       };
 
       const productId = buttonElement.getAttribute("data-product-id");
