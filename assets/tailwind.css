@@ -12,6 +12,9 @@
   .a-h4 {
     @apply text-3xl md:text-[3rem] font-["ZenKakuGothicNew-Regular"];
   }
+  .a-protductTitle {
+    @apply text-4xl md:text-[4rem] font-["ZenKakuGothicNew-Medium"];
+  }
   .a-btn1 {
     @apply text-2xl md:text-[2.5rem] uppercase border-b md:border-b-2 tracking-wider p-0 md:p-0.5;
   }

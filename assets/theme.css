@@ -631,6 +631,18 @@ video {
   }
 }
 
+.a-protductTitle {
+  font-family: "ZenKakuGothicNew-Medium";
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .a-protductTitle {
+    font-size: 4rem;
+  }
+}
+
 .a-btn1 {
   border-bottom-width: 1px;
   padding: 0px;
@@ -720,6 +732,18 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mt-\[100px\] {
+  margin-top: 100px;
+}
+
+.mb-\[20px\] {
+  margin-bottom: 20px;
+}
+
+.mb-\[10px\] {
+  margin-bottom: 10px;
 }
 
 .block {
@@ -909,6 +933,14 @@ video {
   white-space: nowrap;
 }
 
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -940,6 +972,11 @@ video {
 .bg-revenge4 {
   --tw-bg-opacity: 1;
   background-color: rgb(223 213 204 / var(--tw-bg-opacity, 1));
+}
+
+.bg-revenge1 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(246 133 50 / var(--tw-bg-opacity, 1));
 }
 
 .bg-cover {
@@ -1031,6 +1068,10 @@ video {
 
 .italic {
   font-style: italic;
+}
+
+.leading-\[4rem\] {
+  line-height: 4rem;
 }
 
 .text-red-500 {
@@ -1125,6 +1166,14 @@ video {
 
   .md\:mb-\[15px\] {
     margin-bottom: 15px;
+  }
+
+  .md\:mt-\[100px\] {
+    margin-top: 100px;
+  }
+
+  .md\:mt-\[80px\] {
+    margin-top: 80px;
   }
 
   .md\:flex {
