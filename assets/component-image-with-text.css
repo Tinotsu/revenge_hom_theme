@@ -1,4 +1,4 @@
-.image-with-text .grid {
+.image-with-text .grids {
   margin-bottom: 0;
 }
 
@@ -395,7 +395,7 @@
 
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {
-  .image-with-text .grid {
+  .image-with-text .grids {
     margin-left: 0;
   }
 }
