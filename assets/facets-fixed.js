@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const targetDiv = document.querySelector(".facets_fixed_div");
   const color_productCount = document.querySelectorAll(".color_productCount");
 
-const targetDivCo = targetDiv.getBoundingClientRect();
-console.log(targetDivCo)
-
   if (!targetDiv) return;
 
   let lastScrollY = window.scrollY;
@@ -27,7 +24,7 @@ console.log(targetDivCo)
     if (lastScrollY > 490 && currentScrollY <= 490) {
       targetDiv.classList.remove("fixed", "z-40", "w-[100vw]", "bg-revenge2");
       color_productCount.forEach (text => {
-        text.classList.add("text-revenge3")
+        text.classList.remove("text-revenge3")
       })
       if (window.innerWidth >= 768) {
         targetDiv.classList.remove("top-[78px]");
