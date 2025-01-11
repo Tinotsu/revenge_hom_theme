@@ -6,6 +6,7 @@ module.exports = {
     './sections/**/*.liquid',
     './snippets/**/*.liquid',
     './assets/**/*.liquid',
+    './assets/**/*.js',
   ],
   
   theme: {

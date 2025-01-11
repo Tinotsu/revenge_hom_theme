@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("a-featured-product loaded successfully!");
 
   // Function to get favorites from localStorage
   function getFavorites() {
@@ -123,10 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .getAttribute("data-product-id");
 
     if (isInFavorites(productUrl)) {
-      console.log(`${productUrl} is in the favorites!`);
       changeSVG(productId);
-    } else {
-      console.log(`${productUrl} is NOT in the favorites!`);
     }
   });
 

@@ -49,7 +49,11 @@
             {% endif %}
           >
             {%- if filter_type == 'horizontal' and results.filters != empty -%}
-              <h2 class="facets__heading caption-large text-body" id="verticalTitle" tabindex="-1">
+              <h2
+                class="facets__heading caption-large text-body text-revenge4 color_productCount"
+                id="verticalTitle"
+                tabindex="-1"
+              >
                 {{ 'products.facets.filter_by_label' | t }}
               </h2>
             {%- endif -%}
@@ -138,7 +142,7 @@
                       aria-label="{{ filter.label | escape }} ({{ 'products.facets.filters_selected.one' | t: count: filter.active_values.size }})"
                     >
                       <div>
-                        <span class="facets__summary-label">
+                        <span class="facets__summary-label color_productCount">
                           {{- filter.label | escape }}
                           {%- if filter_type == 'vertical' -%}
                             <span class="facets__selected{% if filter.active_values.size == 0 %} hidden{% endif %}">
@@ -151,7 +155,9 @@
                             {{ 'products.facets.filter_and_operator_subtitle' | t }}
                           </span>
                         {%- endif -%}
-                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                        <div class="color_productCount">
+                          {{- 'icon-caret.svg' | inline_asset_content -}}
+                        </div>
                       </div>
                     </summary>
                     <div
@@ -873,7 +879,7 @@
     role="status"
   >
     <h2 class="product-count__text text-body">
-      <span id="ProductCount">
+      <span id="ProductCount" class="color_productCount">
         {%- if results.results_count -%}
           {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
         {%- elsif results.products_count == results.all_products_count -%}

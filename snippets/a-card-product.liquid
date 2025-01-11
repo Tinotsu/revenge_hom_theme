@@ -3,37 +3,37 @@
     <div class="w-full text-right">
       <button
         class="add-to-favorites mt-6 mr-6"
-        data-title="{{ product.title }}"
-        data-image="{{ product.featured_image | img_url: '300x300' }}"
-        data-url="{{ product.url }}"
-        data-product-id="{{ product.id }}"
-        data-price="{{ product.price | money }}"
+        data-title="{{ card_product.title }}"
+        data-image="{{ card_product.featured_image | img_url: '300x300' }}"
+        data-url="{{ card_product.url }}"
+        data-product-id="{{ card_product.id }}"
+        data-price="{{ card_product.price | money }}"
       >
-        <div class="svg_wishlist" id="svg_id_{{ product.id }}">
+        <div class="svg_wishlist" id="svg_id_{{ card_product.id }}">
           <svg width="10" height="14" viewBox="0 0 15 21" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.5 1.5V18.5625L8.175 15.87L7.5 15.5325L6.825 15.87L1.5 18.5625V1.5H13.5ZM13.5 0H1.5C1.10218 0 0.720644 0.158035 0.43934 0.43934C0.158035 0.720644 0 1.10218 0 1.5V21L7.5 17.25L15 21V1.5C15 1.10218 14.842 0.720644 14.5607 0.43934C14.2794 0.158035 13.8978 0 13.5 0Z" fill="#4B3E37"/>
           </svg>
         </div>
       </button>
     </div>
-    <a href="{{ product.url }}">
+    <a href="{{ card_product.url }}">
       <div class="md:mb-[15px] relative flex flex-col items-center justify-end flex-grow">
         <div class="flex flex-col justify-between">
           <img
-            src="{{ product.featured_image | img_url: 'medium' }}"
-            class="h-[170px] w-[170px] md:h-[24vw] md:w-[24vw] object-cover"
-            alt="{{ product.title }}"
-            width=""
-            height=""
+            src="{{ card_product.featured_image | img_url: 'grande' }}"
+            class="h-[170px] w-[170px] md:h-[25vw] md:w-[25vw] object-cover"
+            alt="{{ card_product.title }}"
+            width="900"
+            height="900"
           >
           <div class=" md:hidden md:group-hover:block">
             <div class="text-revenge2 p-2 flex flex-col justify-between h-[90px]">
-              <h3 class="text-revenge2 uppercase text-[12px] font-[ZenKakuGothicNew-Bold]">{{ product.title }}</h3>
+              <h3 class="text-revenge2 uppercase text-[12px] font-[ZenKakuGothicNew-Bold]">{{ card_product.title }}</h3>
               <div class="flex flex-col fit-content">
                 <p class="text-revenge2 text-[16px]">
-                  {% render 'price', product: product, price_class: '', show_compare_at_price: true %}
+                  {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
                 </p>
-                <a href="{{ product.url }}" class="a-btn2 text-[12px]">acheter</a>
+                <a href="{{ card_product.url }}" class="a-btn2 text-[12px]">acheter</a>
               </div>
             </div>
           </div>
